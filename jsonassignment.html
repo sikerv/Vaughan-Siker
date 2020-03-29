@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700&display=swap" rel="stylesheet">
+   
+    <title>
+        json
+    </title>
+
+    <!-- external stylesheet-->
+
+    <!--interal stylesheet-->
+    <style>
+
+.large {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.small {
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.head {
+font-size: 30px;
+font-family: courier;
+  text-align: center;
+}
+
+.sub {
+font-size: 20px;
+font-family: courier;
+  text-align: center;
+}
+	table, th, td {
+  border: 3px solid black;
+  border-collapse: collapse;
+}
+
+th {
+	font-size: 15px;
+	font-weight: normal;
+	font-family: Courier;
+	background: #FFC1B6;
+}
+
+
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+
+
+p.hidden{
+	display:none;
+	font-size: 25px;
+	font-family: Courier;
+}
+
+.custom{
+	position: relative;
+	font-family: Courier;
+}
+
+
+
+
+    </style>
+</head>
+<body style="background-color: #E6FCFF">
+<h1> part 2: display serialized data </h1>
+<p id="demo"></p>
+
+
+<h1> part 3: friendly display of songs </h1>
+<table style="width:100%">
+  <tr>
+    <th style="font-weight: bold" id="title0"></th>
+    <th style="font-weight: bold" id="title1"></th>
+    <th style="font-weight: bold" id="title2"></th>
+    <th style="font-weight: bold" id="title3"></th>
+    <th style="font-weight: bold" id="title4"></th>
+    <th style="font-weight: bold" id="title5"></th>
+    <th style="font-weight: bold" id="title6"></th>
+    <th style="font-weight: bold" id="title7"></th>
+    <th style="font-weight: bold" id="title8"></th>
+    <th style="font-weight: bold" id="title9"></th>
+  </tr>
+  <tr>
+    <th id="artist0"></th>
+    <th id="artist1"></th>
+    <th id="artist2"></th>
+    <th id="artist3"></th>
+    <th id="artist4"></th>
+    <th id="artist5"></th>
+    <th id="artist6"></th>
+    <th id="artist7"></th>
+    <th id="artist8"></th>
+    <th id="artist9"></th>
+  </tr>
+  <tr>
+    <th id="genre0"></th>
+    <th id="genre1"></th>
+    <th id="genre2"></th>
+    <th id="genre3"></th>
+    <th id="genre4"></th>
+    <th id="genre5"></th>
+    <th id="genre6"></th>
+    <th id="genre7"></th>
+    <th id="genre8"></th>
+    <th id="genre9"></th>
+  </tr>
+  <tr>
+    <th id="year0"></th>
+    <th id="year1"></th>
+    <th id="year2"></th>
+    <th id="year3"></th>
+    <th id="year4"></th>
+    <th id="year5"></th>
+    <th id="year6"></th>
+    <th id="year7"></th>
+    <th id="year8"></th>
+    <th id="year9"></th>
+  </tr>
+</table>
+
+
+<script>
+
+	songs = [
+	{'artist' : 'Lil Uzi Vert', 'title'  : 'Myron', 'genre'	 : 'Rap','year'   :  "2020",},
+	{'artist' : 'Trevor Daniel', 'title'  : 'Falling', 'genre'	 : 'Pop','year'   :  "2018",},
+	{'artist' : 'TONES AND I', 'title'  : 'DANCE MONKEY', 'genre'	 : 'Electropop','year'   :  "2019",},
+	{'artist' : 'The Rolling Stones', 'title'  : 'Paint It, Black', 'genre'	 : 'Rock','year'   :  "1966",},
+	{'artist' : 'Kanye West', 'title'  : 'Hey Mama', 'genre' : 'Hip-Hop','year'   :  "2005",},
+	{'artist' : 'Kid Cudi', 'title'  : 'Mr. Rager', 'genre'	 : 'Hip-Hop','year'   :  "2010",},
+	{'artist' : 'Outkast', 'title'  : 'Ms. Jackson', 'genre'	 : 'Hip-Hop','year'   :  "2000",},
+	{'artist' : '21 Savage', 'title'  : 'Bank Account', 'genre'	 : 'Rap','year'   :  "2017",},
+	{'artist' : 'Pusha T', 'title'  : 'The Games We Play', 'genre'	 : 'Rap','year'   :  "2018",},
+	{'artist' : 'Carly Rae Jepsen', 'title'  : 'Call Me Maybe', 'genre'	 : 'Pop','year'   :  "2011",},
+	]
+
+	// document.write (songs[1]["artist"] + "<br>");
+ 	sample  = JSON.stringify(songs);
+	document.getElementById("demo").innerHTML = sample;
+
+  	var result = JSON.parse(sample);
+  	// document.getElementById("song1").innerHTML = result[1]["title"];
+
+
+	// document.getElementById("song1").innerHTML = result[0].title;
+	// document.getElementById("song1a").innerHTML = result[0].artist;
+	// document.getElementById("song1b").innerHTML = result[0].genre;
+	// document.getElementById("song1c").innerHTML = result[0].year;
+
+	var i;
+	for (i=0; i<10;i++){
+		document.getElementById("title" + i).innerHTML = result[i].title;
+		document.getElementById("artist" + i).innerHTML = "artist: " + result[i].artist;
+		document.getElementById("genre" + i).innerHTML = "genre: " + result[i].genre;
+		document.getElementById("year" + i).innerHTML = "released " + result[i].year;
+	}
+
+
+</script>
+<h1> part 4: form </h1>
+
+	<select id="pick" class="custom" onchange="stuff()">
+		<option> Pick a Genre </option>
+		<option value="1"> Rap </option>
+		<option value="2"> Pop </option>
+		<option value="3"> Hip-Hop </option>
+		<option value="4"> Rock </option>
+		<option value="5"> Electropop </option>
+	</select>
+<br><br>
+
+<p id="1" class="hidden">
+	Myron <br><br>
+	Bank Account <br><br>
+	The Games We Play <br><br>
+</p>
+<p id="2" class="hidden">
+	Falling 
+</p>
+<p id="3" class="hidden">
+	Hey Mama <br><br>
+	Mr. Rager <br><br>
+	Ms. Jackson <br><br>
+</p>
+<p id="4" class="hidden">
+	Paint It, Black
+</p>
+<p id="5" class="hidden">
+	DANCE MONKEY
+</p>
+
+
+<script>
+	function stuff() {
+		document.getElementById(1).style.display = "none";
+		document.getElementById(2).style.display = "none";
+		document.getElementById(3).style.display = "none";
+		document.getElementById(4).style.display = "none";
+		document.getElementById(5).style.display = "none";
+		var x = document.getElementById("pick").value;
+		document.getElementById(x).style.display = "unset";
+}
+
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
